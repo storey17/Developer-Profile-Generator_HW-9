@@ -33,21 +33,52 @@ async function getData(data) {
         type: "input",
         name: "installation",
         message: "How do you install?"
-    }]
+    },
+    {
+        type: "input",
+        name: "usage",
+        message: "How do you use it?"
+    },
+    {
+        type: "input",
+        name: "license",
+        message: "What is your license?"
+    },
+    {
+        type: "input",
+        name: "contributing",
+        message: "Who contributed?"
+    },
+    {
+        type: "input",
+        name: "tests",
+        message: "Tell me about your process for testing."
+    },
+    {
+        type: "input",
+        name: "question",
+        message: "Do you have any questions?"
+    }
+]
     
     try {
-        const {username, title, description, tableOfContents, installation}  = await inquirer.prompt(questions);
+        const {username, title, description, tableOfContents, installation, usage, license, contributing, tests, question}  = await inquirer.prompt(questions);
 
         let {data} = await axios.get(`https://api.github.com/users/${username}`)
-        
+
         await writeFileAsync("readme1.md",  `
-        ## GitHub Username: ${username}
-        ## Email: ${data.email}
-        ## Bio Image: ${data.avatar_url}
-        ## Repo Title: ${title}
-        ## Repo Description: ${description}
-        ## Table of Contents: ${tableOfContents}
-        ## Installation: ${installation}
+        # **GitHub Username:** ${username}
+        # **Email:** ${data.email}
+        # **Bio Image:** ${data.avatar_url}
+        # Repo Title: ${title}
+        # Repo Description: ${description}
+        # Table of Contents: ${tableOfContents}
+        # Installation: ${installation}
+        # Usage: ${usage}
+        # License: ${license}
+        # Contributing: ${contributing}
+        # Tests: ${tests}
+        # Questions: ${question}
         `)
 
     } catch (err) {
