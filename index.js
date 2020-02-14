@@ -66,7 +66,7 @@ async function getData(data) {
 
         let {data} = await axios.get(`https://api.github.com/users/${username}`)
 
-        await writeFileAsync("readme1.md",  `
+        await writeFileAsync("README.md",  `
         # **GitHub Username:** ${username}
         # **Email:** ${data.email}
         # **Bio Image:** ${data.avatar_url}
