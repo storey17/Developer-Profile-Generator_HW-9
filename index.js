@@ -12,7 +12,7 @@ async function getData(data) {
     let questions = [{
         type: "input",
         name: "username",
-        message: "What is your name?"
+        message: "What is your GitHub username?"
     },
     {
         type: "input",
@@ -67,9 +67,9 @@ async function getData(data) {
         let {data} = await axios.get(`https://api.github.com/users/${username}`)
 
         await writeFileAsync("README.md",  `
-        # **GitHub Username:** ${username}
-        # **Email:** ${data.email}
-        # **Bio Image:** ${data.avatar_url}
+        # GitHub Username: ${username}
+        # Email: ${data.email}
+        # Bio Image: ${data.avatar_url}
         # Repo Title: ${title}
         # Repo Description: ${description}
         # Table of Contents: ${tableOfContents}
@@ -79,6 +79,7 @@ async function getData(data) {
         # Contributing: ${contributing}
         # Tests: ${tests}
         # Questions: ${question}
+        # Badge: ${data.badge}
         `)
 
     } catch (err) {
